@@ -7,20 +7,25 @@ function App() {
     const [output, setOutput] = useState("No Result")
 
     const getResults = () => {
+        setOutput("Fetching Info...")
         if (input) {
             const requestOptions = {
                 method: 'POST', headers: {'Content-Type': 'application/json'}, body: input
             };
             fetch("/campaign", requestOptions)
                 .then(response => response.json())
-                .then(data => setOutput(data.text));
+                .then(data => setOutput(data.text)).catch(() => {
+                setOutput("We are facing issue in fetching the details")
+            });
         } else {
             const requestOptions = {
                 method: 'POST', headers: {'Content-Type': 'application/json'}
             };
             fetch("/campaign/generic", requestOptions)
                 .then(response => response.json())
-                .then(data => setOutput(data.text));
+                .then(data => setOutput(data.text)).catch(() => {
+                setOutput("We are facing issue in fetching the details")
+            });
         }
     }
 
