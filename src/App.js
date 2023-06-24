@@ -44,7 +44,7 @@ function App() {
             }}
         />
         <Button variant="outlined" onClick={getResults}>Get Results</Button>
-        <div>{output}</div>
+        <div className='white-space'>{output}</div>
     </div>);
 }
 
